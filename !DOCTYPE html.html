@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        #btnSim {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #btnNao {
+            background-color: #f44336;
+            color: white;
+        }
+
+        @keyframes hearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-200px); opacity: 0; }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: hearts 1.5s ease-in-out forwards;
+        }
+
+        .heart-1 { color: red; }
+        .heart-2 { color: pink; }
+        .heart-3 { color: orange; }
+        .heart-4 { color: purple; }
+        .heart-5 { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Aceita ser minha?</h1>
+    <button id="btnSim" class="button">Sim</button>
+    <button id="btnNao" class="button">Não</button>
+
+    <script>
+        const btnNao = document.getElementById('btnNao');
+        const btnSim = document.getElementById('btnSim');
+
+        btnNao.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - btnNao.clientWidth);
+            const y = Math.random() * (window.innerHeight - btnNao.clientHeight);
+            btnNao.style.position = 'absolute';
+            btnNao.style.left = `${x}px`;
+            btnNao.style.top = `${y}px`;
+        });
+
+        btnSim.addEventListener('click', () => {
+            for (let i = 1; i <= 5; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = '❤️';
+                heart.classList.add('heart', `heart-${i}`);
+                heart.style.left = `${50 + (i * 20)}%`;
+                document.body.appendChild(heart);
+            }
+            setTimeout(() => {
+                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
